@@ -1,0 +1,47 @@
+@model Allideas
+
+<div class="bg-secondary pb-4 d-inline-block col-12">
+    <div class="navbar navbar-expand-lg bg-dark text-white justify-content-between">
+        <h4>Hello, @ViewBag.Name!</h4>
+        <a href="/logout" class="offset-7">Log Out</a>
+    </div>
+    <div class="container col-12 bg-light p-3 rounded">
+        <div class="mb-5">
+            <form asp-action="postIdeas" asp-controller="Home" method="post">
+                <div class="form-group mb-2">
+                    <span asp-validation-for="newIdea.Post" class="text-danger m-0"></span>
+                    <textarea asp-for="newIdea.Post" rows="3" class="form-control bg-light" placeholder="post something witty here..."></textarea>
+                </div>
+                <input asp-for="newIdea.UserId" value="@ViewBag.User" type="hidden">
+                <button type="submit" class="btn btn-primary mt-0 offset-11">Post</button>
+            </form>
+        </div>
+
+        <div class="container col-12 bg-light pt-2 pb-3">
+             @{
+                foreach(Idea msg in Model.allIdeas)
+                {
+                    <div class="container border-bottom mb-4">
+                        <h6 class="d-inline-block col-3"><a href="users/@msg.UserId">@msg.Poster.Username</a> says</h6>
+                        <div class="d-inline-block col-8 mb-0">
+                            <p class="container border">@msg.Post</p>
+                        </div>
+                        <p class="mt-0 mb-0 offset-3"><a href="/bright_ideas/@msg.IdeaId">@msg.Likes.Count() people</a> likes this</p>
+                        <p class="offset-3">
+                            @{
+                                if(msg.Likes.Any(l => l.UserId == @ViewBag.User) == false)
+                                {
+                                    <a href="like/@msg.IdeaId">Like</a>
+                                }
+                                if(msg.UserId == @ViewBag.User)
+                                {
+                                    <a href="destroy/@msg.IdeaId">Delete</a>
+                                }
+                            }
+                        </p>
+                    </div>
+                }
+             }
+        </div>
+    </div>
+</div>

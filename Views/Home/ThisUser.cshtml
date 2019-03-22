@@ -1,0 +1,42 @@
+@model User
+
+<div class="bg-secondary pb-4 d-inline-block col-12">
+    <div class="navbar navbar-expand-lg bg-dark text-white justify-content-between">
+        <a href="/bright_ideas">Bright Ideas</a>
+        <a href="/logout" class="offset-7">Log Out</a>
+    </div>
+
+    <div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="col">Name</td>
+                    <td>@Model.Name</td>
+                </tr>
+                <tr>
+                    <td scope="col">Alias</td>
+                    <td>@Model.Username</td>
+                </tr>
+                <tr>
+                    <td scope="col">Email</td>
+                    <td>@Model.Email</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container col-6 bg-light">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td scope="col">Total Number of Posts</td>
+                    <td>@Model.PostedIdeas.Count</td>
+                </tr>
+                <tr>
+                    <td scope="col">Total Number of Likes</td>
+                    <td>@Model.LikedPost.Count</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
