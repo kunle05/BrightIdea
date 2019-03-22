@@ -36,5 +36,7 @@ namespace BrightIdeas.Models
     {
         public List<Idea> allIdeas {get; set;}
         public Idea newIdea {get; set;}
+        public List<Like> allLikes {get; set;}
+        public User thisUser {get; set;}
     }
 }

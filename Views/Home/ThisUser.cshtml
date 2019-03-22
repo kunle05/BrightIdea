@@ -1,4 +1,4 @@
-@model User
+@model Allideas
 
 <div class="bg-secondary pb-4 d-inline-block col-12">
     <div class="navbar navbar-expand-lg bg-dark text-white justify-content-between">
@@ -11,15 +11,15 @@
             <tbody>
                 <tr>
                     <td scope="col">Name</td>
-                    <td>@Model.Name</td>
+                    <td>@Model.thisUser.Name</td>
                 </tr>
                 <tr>
                     <td scope="col">Alias</td>
-                    <td>@Model.Username</td>
+                    <td>@Model.thisUser.Username</td>
                 </tr>
                 <tr>
                     <td scope="col">Email</td>
-                    <td>@Model.Email</td>
+                    <td>@Model.thisUser.Email</td>
                 </tr>
             </tbody>
         </table>
@@ -30,11 +30,11 @@
             <tbody>
                 <tr>
                     <td scope="col">Total Number of Posts</td>
-                    <td>@Model.PostedIdeas.Count</td>
+                    <td>@Model.thisUser.PostedIdeas.Count</td>
                 </tr>
                 <tr>
                     <td scope="col">Total Number of Likes</td>
-                    <td>@Model.LikedPost.Count</td>
+                    <td>@Model.allLikes.Count</td>
                 </tr>
             </tbody>
         </table>

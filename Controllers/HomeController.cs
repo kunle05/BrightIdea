@@ -182,11 +182,19 @@ namespace Secrets.Controllers
             }
             ViewBag.User = (int)userId;
 
-            User thisUser = dbContext.Users.Where(u => u.UserId == id)
-            .Include(i => i.PostedIdeas)
-            .Include(i => i.LikedPost).Single();
+             Allideas userLike = new Allideas()
+             {
+              thisUser = dbContext.Users.Where(u => u.UserId == id)
+                .Include(i => i.PostedIdeas)
+                .Include(i => i.LikedPost).Single(),
+
+                allLikes = dbContext.Likes.Include(i => i.Idea)
+                .ThenInclude(idx => idx.Poster)
+                .Where(i => i.Idea.UserId == id).ToList()
+            };
             
-            return View(thisUser);
+
+            return View(userLike);
         }
 
         [HttpGet("like/{id}")]
